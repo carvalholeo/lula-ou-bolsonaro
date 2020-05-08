@@ -5,21 +5,21 @@ function walk(node)
 	// I stole this function from here:
 	// http://is.gd/mwZp7E
 	
-	var child, next;
+	let child, next;
 	
-	var tagName = node.tagName ? node.tagName.toLowerCase() : "";
-	// if (tagName == 'input' || tagName == 'textarea') {
-	// 	return;
-	// }
-	// if (node.classList && node.classList.contains('ace_editor')) {
-	// 	return;
-	// }
+	let tagName = node.tagName ? node.tagName.toLowerCase() : "";
+	if (tagName == 'input' || tagName == 'textarea') {
+		return;
+	}
+	if (node.classList && node.classList.contains('ace_editor')) {
+		return;
+	}
 
 	switch ( node.nodeType )  
 	{
-		case 1:  // Element
-		case 9:  // Document
-		case 11: // Document fragment
+		case Node.ELEMENT_NODE:  // Element
+		case Node.DOCUMENT_NODE:  // Document
+		case Node.DOCUMENT_FRAGMENT_NODE: // Document fragment
 			child = node.firstChild;
 			while ( child ) 
 			{
@@ -29,25 +29,61 @@ function walk(node)
 			}
 			break;
 
-		case 3: // Text node
-			handleText(node);
+		case Node.TEXT_NODE: // Text node
+
+			if(changeToLula(node.nodeValue)['status'] == 1) {
+				node.nodeValue = changeToLula(node.nodeValue)['text'];
+				break;
+
+			} else if (changeToBolsonaro(node.nodeValue)['status'] == 1) {
+				node.nodeValue = changeToBolsonaro(node.nodeValue)['text'];
+				break;
+			}
+			
 			break;
 	}
 }
 
-function handleText(textNode) 
+function changeToLula(textNode) 
 {
-	var v = textNode.nodeValue;
 
-	v = v.replace(/\bLuiz Inácio Lula da Silva\b/gis, "Jair Bolsonaro");
-	v = v.replace(/\bLula\b/gis, "Bolsonaro");
-	v = v.replace(/\bJair Bolsonaro\b/gis, "Luiz Inácio Lula da Silva");
-	v = v.replace(/\bJair Messias Bolsonaro\b/gis, "Luiz Inácio Lula da Silva");
-	v = v.replace(/\bBolsonaro\b/gis, "Lula");
+	const v = textNode
+		.replace(/\bLuiz Inácio Lula da Silva\b/gims, 'Jair Messias Bolsonaro')
+		.replace(/\bLula\b/gims, 'Bolsonaro')
+		.replace(/\bLuiz Inácio da Silva\b/gims, 'Jair Bolsonaro');
 
-	debugger;
-	
-	textNode.nodeValue = v;
+	return configureResponse(textNode, v);
 }
 
+function changeToBolsonaro(textNode) {
+	const v = textNode
+		.replace(/\bJair Bolsonaro\b/gims, 'Luiz Inácio Lula da Silva')
+		.replace(/\bJair Messias Bolsonaro\b/gims, 'Luiz Inácio Lula da Silva')
+		.replace(/\bBolsonaro\b/gims, 'Lula');
+	
+	return configureResponse(textNode, v);
+}
+
+function configureResponse (original, replaced) {
+	let status = 0;
+	let response = [];
+
+	if (original == replaced) {
+		response = {
+			status, 
+			'text': original
+		};
+
+		return response;
+	}
+
+	status = 1;
+
+	response = {
+		status, 
+		'text': replaced
+	};
+
+	return response;
+}
 
