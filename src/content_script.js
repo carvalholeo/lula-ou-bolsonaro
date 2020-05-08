@@ -8,12 +8,12 @@ function walk(node)
 	var child, next;
 	
 	var tagName = node.tagName ? node.tagName.toLowerCase() : "";
-	if (tagName == 'input' || tagName == 'textarea') {
-		return;
-	}
-	if (node.classList && node.classList.contains('ace_editor')) {
-		return;
-	}
+	// if (tagName == 'input' || tagName == 'textarea') {
+	// 	return;
+	// }
+	// if (node.classList && node.classList.contains('ace_editor')) {
+	// 	return;
+	// }
 
 	switch ( node.nodeType )  
 	{
@@ -39,18 +39,13 @@ function handleText(textNode)
 {
 	var v = textNode.nodeValue;
 
-	v = v.replace(/\bAWS Lambda\b/g, "AWS Common Gateway Interface");
-	v = v.replace(/\bAWS lambda\b/g, "AWS Common Gateway Interface");
-	v = v.replace(/\baws Lambda\b/g, "AWS Common Gateway Interface");
-	v = v.replace(/\baws lambda\b/g, "AWS Common Gateway Interface");
+	v = v.replace(/\bLuiz Inácio Lula da Silva\b/gis, "Jair Bolsonaro");
+	v = v.replace(/\bLula\b/gis, "Bolsonaro");
+	v = v.replace(/\bJair Bolsonaro\b/gis, "Luiz Inácio Lula da Silva");
+	v = v.replace(/\bJair Messias Bolsonaro\b/gis, "Luiz Inácio Lula da Silva");
+	v = v.replace(/\bBolsonaro\b/gis, "Lula");
 
-	v = v.replace(/\bServerless\b/g, "cgi-bin");
-	v = v.replace(/\bserverless\b/g, "cgi-bin");
-
-	v = v.replace(/\bcgi-bin architecture\b/g, "Common Gateway Interface architecture");
-	v = v.replace(/\bcgi-bin architectures\b/g, "Common Gateway Interface architecture");
-	v = v.replace(/\bcgi-bin Architecture\b/g, "Common Gateway Interface architecture");
-	v = v.replace(/\bcgi-bin Architectures\b/g, "Common Gateway Interface architecture");
+	debugger;
 	
 	textNode.nodeValue = v;
 }

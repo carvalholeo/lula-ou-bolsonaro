@@ -1,14 +1,11 @@
-# serverless-to-cgi-bin
+# Lula x Bolsonaro
 
-A browser extension that replaces occurrences of 'serverless' with 'cgi-bin':
+Uma extensão de navegador que percorre a página e substitui todas as ocorrências dos nomes de 'Lula' e 'Bolsonaro', um pelo outro, sempre que aparecem.
 
-* [Chrome](https://chrome.google.com/webstore/detail/jbeakheihfbkiebhdhcfbemcmlninook)
-* [Firefox](https://addons.mozilla.org/en-US/firefox/addon/serverless-to-cgi-bin/)
+Ainda está em fase de desenvolvimento e está com bugs no RegEx. Assim que concluído, será publicado nas lojas de plugins, para você fazer aquela famosa 'zuera'.
 
-![](screenshot.png)
+## Discussões
 
-## discussions
-
-- https://news.ycombinator.com/item?id=20873118
-- https://www.reddit.com/r/serverless/comments/cze0xb/a_browser_extension_that_replaces_occurrences_of/
-- https://lobste.rs/s/9t41mt/browser_extension_replaces_occurrences
+- [https://news.ycombinator.com/item?id=20873118](https://news.ycombinator.com/item?id=20873118)
+- [https://www.reddit.com/r/serverless/comments/cze0xb/a_browser_extension_that_replaces_occurrences_of/](https://news.ycombinator.com/item?id=20873118)
+- [https://lobste.rs/s/9t41mt/browser_extension_replaces_occurrences](https://news.ycombinator.com/item?id=20873118)

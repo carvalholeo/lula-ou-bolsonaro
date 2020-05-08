@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
-	"name": "serverless to cgi-bin",
+	"name": "Lula x Bolsonaro",
 	"version": "1.0",
-	"description": "Replaces the text 'serverless' with 'cgi-bin'.",
+	"description": "Troca o texto 'Lula' por 'Bolsonaro' e vice-versa.",
 	"content_scripts": 
 	[
 		{
